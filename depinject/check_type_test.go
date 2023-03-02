@@ -10,7 +10,6 @@ import (
 	"cosmossdk.io/depinject/internal/graphviz"
 )
 
-// okoko
 func TestCheckIsExportedType(t *testing.T) {
 	expectValidType(t, false)
 	expectValidType(t, uint(0))
