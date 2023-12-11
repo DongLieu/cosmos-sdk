@@ -90,11 +90,11 @@ func (suite *KeeperTestSuite) TestGRPCQueryConstitution() {
 	suite.reset()
 	queryClient := suite.queryClient
 
-	expRes := &v1.QueryConstitutionResponse{Constitution: "constitution"}
+	express := &v1.QueryConstitutionResponse{Constitution: "constitution"}
 
 	constitution, err := queryClient.Constitution(gocontext.Background(), &v1.QueryConstitutionRequest{})
 	suite.Require().NoError(err)
-	suite.Require().Equal(expRes, constitution)
+	suite.Require().Equal(express, constitution)
 }
 
 func (suite *KeeperTestSuite) TestLegacyGRPCQueryProposal() {
@@ -192,7 +192,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 
 	var (
 		req    *v1.QueryProposalsRequest
-		expRes *v1.QueryProposalsResponse
+		express *v1.QueryProposalsResponse
 	)
 
 	testCases := []struct {
@@ -226,7 +226,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					Pagination: &query.PageRequest{Limit: 3},
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals[:3],
 				}
 			},
@@ -239,7 +239,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					Pagination: &query.PageRequest{Offset: 3, Limit: 3},
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals[3:],
 				}
 			},
@@ -252,7 +252,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					Pagination: &query.PageRequest{Limit: 2, CountTotal: true},
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals[:2],
 				}
 			},
@@ -265,7 +265,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					ProposalStatus: v1.StatusDepositPeriod,
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals,
 				}
 			},
@@ -283,7 +283,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					Depositor: addrs[0].String(),
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals[:1],
 				}
 			},
@@ -301,7 +301,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					Voter: addrs[0].String(),
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: testProposals[1:2],
 				}
 			},
@@ -321,7 +321,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					}
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: proposals,
 				}
 			},
@@ -341,7 +341,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					}
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: proposals,
 				}
 			},
@@ -365,7 +365,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 					}
 				}
 
-				expRes = &v1.QueryProposalsResponse{
+				express = &v1.QueryProposalsResponse{
 					Proposals: proposals,
 				}
 			},
@@ -382,11 +382,11 @@ func (suite *KeeperTestSuite) TestGRPCQueryProposals() {
 			if testCase.expPass {
 				suite.Require().NoError(err)
 
-				suite.Require().Len(proposals.GetProposals(), len(expRes.GetProposals()))
+				suite.Require().Len(proposals.GetProposals(), len(express.GetProposals()))
 				for i := 0; i < len(proposals.GetProposals()); i++ {
 					suite.Require().NoError(err)
 					suite.Require().NotEmpty(proposals.GetProposals()[i])
-					suite.Require().Equal(expRes.GetProposals()[i].String(), proposals.GetProposals()[i].String())
+					suite.Require().Equal(express.GetProposals()[i].String(), proposals.GetProposals()[i].String())
 				}
 
 			} else {
@@ -446,7 +446,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVote() {
 
 	var (
 		req      *v1.QueryVoteRequest
-		expRes   *v1.QueryVoteResponse
+		express   *v1.QueryVoteResponse
 		proposal v1.Proposal
 	)
 
@@ -504,7 +504,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVote() {
 					Voter:      addrs[0].String(),
 				}
 
-				expRes = &v1.QueryVoteResponse{}
+				express = &v1.QueryVoteResponse{}
 			},
 			false,
 		},
@@ -521,7 +521,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVote() {
 					Voter:      addrs[0].String(),
 				}
 
-				expRes = &v1.QueryVoteResponse{Vote: &v1.Vote{ProposalId: proposal.Id, Voter: addrs[0].String(), Options: []*v1.WeightedVoteOption{{Option: v1.OptionAbstain, Weight: math.LegacyMustNewDecFromStr("1.0").String()}}}}
+				express = &v1.QueryVoteResponse{Vote: &v1.Vote{ProposalId: proposal.Id, Voter: addrs[0].String(), Options: []*v1.WeightedVoteOption{{Option: v1.OptionAbstain, Weight: math.LegacyMustNewDecFromStr("1.0").String()}}}}
 			},
 			true,
 		},
@@ -533,7 +533,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVote() {
 					Voter:      addrs[1].String(),
 				}
 
-				expRes = &v1.QueryVoteResponse{}
+				express = &v1.QueryVoteResponse{}
 			},
 			false,
 		},
@@ -547,7 +547,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVote() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes, vote)
+				suite.Require().Equal(express, vote)
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(vote)
@@ -561,7 +561,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVote() {
 
 	var (
 		req      *v1beta1.QueryVoteRequest
-		expRes   *v1beta1.QueryVoteResponse
+		express   *v1beta1.QueryVoteResponse
 		proposal v1.Proposal
 	)
 
@@ -619,7 +619,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVote() {
 					Voter:      addrs[0].String(),
 				}
 
-				expRes = &v1beta1.QueryVoteResponse{}
+				express = &v1beta1.QueryVoteResponse{}
 			},
 			false,
 		},
@@ -636,7 +636,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVote() {
 					Voter:      addrs[0].String(),
 				}
 
-				expRes = &v1beta1.QueryVoteResponse{Vote: v1beta1.Vote{ProposalId: proposal.Id, Voter: addrs[0].String(), Options: []v1beta1.WeightedVoteOption{{Option: v1beta1.OptionAbstain, Weight: math.LegacyMustNewDecFromStr("1.0")}}}}
+				express = &v1beta1.QueryVoteResponse{Vote: v1beta1.Vote{ProposalId: proposal.Id, Voter: addrs[0].String(), Options: []v1beta1.WeightedVoteOption{{Option: v1beta1.OptionAbstain, Weight: math.LegacyMustNewDecFromStr("1.0")}}}}
 			},
 			true,
 		},
@@ -648,7 +648,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVote() {
 					Voter:      addrs[1].String(),
 				}
 
-				expRes = &v1beta1.QueryVoteResponse{}
+				express = &v1beta1.QueryVoteResponse{}
 			},
 			false,
 		},
@@ -662,7 +662,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVote() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes, vote)
+				suite.Require().Equal(express, vote)
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(vote)
@@ -679,7 +679,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVotes() {
 
 	var (
 		req      *v1.QueryVotesRequest
-		expRes   *v1.QueryVotesResponse
+		express   *v1.QueryVotesResponse
 		proposal v1.Proposal
 		votes    v1.Votes
 	)
@@ -750,7 +750,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVotes() {
 					ProposalId: proposal.Id,
 				}
 
-				expRes = &v1.QueryVotesResponse{
+				express = &v1.QueryVotesResponse{
 					Votes: votes,
 				}
 			},
@@ -766,7 +766,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryVotes() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetVotes(), votes.GetVotes())
+				suite.Require().Equal(express.GetVotes(), votes.GetVotes())
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(votes)
@@ -783,7 +783,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVotes() {
 
 	var (
 		req      *v1beta1.QueryVotesRequest
-		expRes   *v1beta1.QueryVotesResponse
+		express   *v1beta1.QueryVotesResponse
 		proposal v1.Proposal
 		votes    v1beta1.Votes
 	)
@@ -855,7 +855,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVotes() {
 					ProposalId: proposal.Id,
 				}
 
-				expRes = &v1beta1.QueryVotesResponse{
+				express = &v1beta1.QueryVotesResponse{
 					Votes: votes,
 				}
 			},
@@ -871,7 +871,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryVotes() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetVotes(), votes.GetVotes())
+				suite.Require().Equal(express.GetVotes(), votes.GetVotes())
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(votes)
@@ -887,7 +887,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 
 	var (
 		req    *v1.QueryParamsRequest
-		expRes *v1.QueryParamsResponse
+		express *v1.QueryParamsResponse
 	)
 
 	testCases := []struct {
@@ -907,7 +907,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 			func() {
 				req = &v1.QueryParamsRequest{ParamsType: v1.ParamDeposit}
 				depositParams := v1.NewDepositParams(params.MinDeposit, params.MaxDepositPeriod) //nolint:staticcheck // SA1019: params.MinDeposit is deprecated: Use MinInitialDeposit instead.
-				expRes = &v1.QueryParamsResponse{
+				express = &v1.QueryParamsResponse{
 					DepositParams: &depositParams,
 				}
 			},
@@ -918,7 +918,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 			func() {
 				req = &v1.QueryParamsRequest{ParamsType: v1.ParamVoting}
 				votingParams := v1.NewVotingParams(params.VotingPeriod) //nolint:staticcheck // SA1019: params.VotingPeriod is deprecated: Use VotingPeriod instead.
-				expRes = &v1.QueryParamsResponse{
+				express = &v1.QueryParamsResponse{
 					VotingParams: &votingParams,
 				}
 			},
@@ -929,7 +929,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 			func() {
 				req = &v1.QueryParamsRequest{ParamsType: v1.ParamTallying}
 				tallyParams := v1.NewTallyParams(params.Quorum, params.Threshold, params.VetoThreshold) //nolint:staticcheck // SA1019: params.Quorum is deprecated: Use Quorum instead.
-				expRes = &v1.QueryParamsResponse{
+				express = &v1.QueryParamsResponse{
 					TallyParams: &tallyParams,
 				}
 			},
@@ -939,7 +939,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 			"invalid request",
 			func() {
 				req = &v1.QueryParamsRequest{ParamsType: "wrongPath"}
-				expRes = &v1.QueryParamsResponse{}
+				express = &v1.QueryParamsResponse{}
 			},
 			false,
 		},
@@ -953,9 +953,9 @@ func (suite *KeeperTestSuite) TestGRPCQueryParams() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetDepositParams(), params.GetDepositParams()) //nolint:staticcheck // SA1019: params.MinDeposit is deprecated: Use MinInitialDeposit instead.
-				suite.Require().Equal(expRes.GetVotingParams(), params.GetVotingParams())   //nolint:staticcheck // SA1019: params.VotingPeriod is deprecated: Use VotingPeriod instead.
-				suite.Require().Equal(expRes.GetTallyParams(), params.GetTallyParams())     //nolint:staticcheck // SA1019: params.Quorum is deprecated: Use Quorum instead.
+				suite.Require().Equal(express.GetDepositParams(), params.GetDepositParams()) //nolint:staticcheck // SA1019: params.MinDeposit is deprecated: Use MinInitialDeposit instead.
+				suite.Require().Equal(express.GetVotingParams(), params.GetVotingParams())   //nolint:staticcheck // SA1019: params.VotingPeriod is deprecated: Use VotingPeriod instead.
+				suite.Require().Equal(express.GetTallyParams(), params.GetTallyParams())     //nolint:staticcheck // SA1019: params.Quorum is deprecated: Use Quorum instead.
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(params)
@@ -969,7 +969,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 
 	var (
 		req    *v1beta1.QueryParamsRequest
-		expRes *v1beta1.QueryParamsResponse
+		express *v1beta1.QueryParamsResponse
 	)
 
 	defaultTallyParams := v1beta1.TallyParams{
@@ -995,7 +995,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 			func() {
 				req = &v1beta1.QueryParamsRequest{ParamsType: v1beta1.ParamDeposit}
 				depositParams := v1beta1.DefaultDepositParams()
-				expRes = &v1beta1.QueryParamsResponse{
+				express = &v1beta1.QueryParamsResponse{
 					DepositParams: depositParams,
 					TallyParams:   defaultTallyParams,
 				}
@@ -1007,7 +1007,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 			func() {
 				req = &v1beta1.QueryParamsRequest{ParamsType: v1beta1.ParamVoting}
 				votingParams := v1beta1.DefaultVotingParams()
-				expRes = &v1beta1.QueryParamsResponse{
+				express = &v1beta1.QueryParamsResponse{
 					VotingParams: votingParams,
 					TallyParams:  defaultTallyParams,
 				}
@@ -1019,7 +1019,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 			func() {
 				req = &v1beta1.QueryParamsRequest{ParamsType: v1beta1.ParamTallying}
 				tallyParams := v1beta1.DefaultTallyParams()
-				expRes = &v1beta1.QueryParamsResponse{
+				express = &v1beta1.QueryParamsResponse{
 					TallyParams: tallyParams,
 				}
 			},
@@ -1029,7 +1029,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 			"invalid request",
 			func() {
 				req = &v1beta1.QueryParamsRequest{ParamsType: "wrongPath"}
-				expRes = &v1beta1.QueryParamsResponse{}
+				express = &v1beta1.QueryParamsResponse{}
 			},
 			false,
 		},
@@ -1043,9 +1043,9 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryParams() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetDepositParams(), params.GetDepositParams())
-				suite.Require().Equal(expRes.GetVotingParams(), params.GetVotingParams())
-				suite.Require().Equal(expRes.GetTallyParams(), params.GetTallyParams())
+				suite.Require().Equal(express.GetDepositParams(), params.GetDepositParams())
+				suite.Require().Equal(express.GetVotingParams(), params.GetVotingParams())
+				suite.Require().Equal(express.GetTallyParams(), params.GetTallyParams())
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(params)
@@ -1060,7 +1060,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposit() {
 
 	var (
 		req      *v1.QueryDepositRequest
-		expRes   *v1.QueryDepositResponse
+		express   *v1.QueryDepositResponse
 		proposal v1.Proposal
 	)
 
@@ -1134,7 +1134,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposit() {
 					Depositor:  addrs[0].String(),
 				}
 
-				expRes = &v1.QueryDepositResponse{Deposit: &deposit}
+				express = &v1.QueryDepositResponse{Deposit: &deposit}
 			},
 			true,
 		},
@@ -1148,10 +1148,10 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposit() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(deposit.GetDeposit(), expRes.GetDeposit())
+				suite.Require().Equal(deposit.GetDeposit(), express.GetDeposit())
 			} else {
 				suite.Require().Error(err)
-				suite.Require().Nil(expRes)
+				suite.Require().Nil(express)
 			}
 		})
 	}
@@ -1162,7 +1162,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposit() {
 
 	var (
 		req      *v1beta1.QueryDepositRequest
-		expRes   *v1beta1.QueryDepositResponse
+		express   *v1beta1.QueryDepositResponse
 		proposal v1.Proposal
 	)
 
@@ -1237,7 +1237,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposit() {
 					Depositor:  addrs[0].String(),
 				}
 
-				expRes = &v1beta1.QueryDepositResponse{Deposit: deposit}
+				express = &v1beta1.QueryDepositResponse{Deposit: deposit}
 			},
 			true,
 		},
@@ -1251,10 +1251,10 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposit() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(deposit.GetDeposit(), expRes.GetDeposit())
+				suite.Require().Equal(deposit.GetDeposit(), express.GetDeposit())
 			} else {
 				suite.Require().Error(err)
-				suite.Require().Nil(expRes)
+				suite.Require().Nil(express)
 			}
 		})
 	}
@@ -1265,7 +1265,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposits() {
 
 	var (
 		req      *v1.QueryDepositsRequest
-		expRes   *v1.QueryDepositsResponse
+		express   *v1.QueryDepositsResponse
 		proposal v1.Proposal
 	)
 
@@ -1331,7 +1331,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposits() {
 					ProposalId: proposal.Id,
 				}
 
-				expRes = &v1.QueryDepositsResponse{
+				express = &v1.QueryDepositsResponse{
 					Deposits: deposits,
 				}
 			},
@@ -1347,7 +1347,7 @@ func (suite *KeeperTestSuite) TestGRPCQueryDeposits() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetDeposits(), deposits.GetDeposits())
+				suite.Require().Equal(express.GetDeposits(), deposits.GetDeposits())
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(deposits)
@@ -1362,7 +1362,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposits() {
 
 	var (
 		req      *v1beta1.QueryDepositsRequest
-		expRes   *v1beta1.QueryDepositsResponse
+		express   *v1beta1.QueryDepositsResponse
 		proposal v1.Proposal
 	)
 
@@ -1430,7 +1430,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposits() {
 					ProposalId: proposal.Id,
 				}
 
-				expRes = &v1beta1.QueryDepositsResponse{
+				express = &v1beta1.QueryDepositsResponse{
 					Deposits: deposits,
 				}
 			},
@@ -1446,7 +1446,7 @@ func (suite *KeeperTestSuite) TestLegacyGRPCQueryDeposits() {
 
 			if testCase.expPass {
 				suite.Require().NoError(err)
-				suite.Require().Equal(expRes.GetDeposits(), deposits.GetDeposits())
+				suite.Require().Equal(express.GetDeposits(), deposits.GetDeposits())
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Nil(deposits)
