@@ -61,7 +61,7 @@ func (r RPCClient) Invoke(ctx context.Context, method string, req, reply interfa
 	var height int64
 	md, _ := metadata.FromOutgoingContext(ctx)
 	if heights := md.Get(grpctypes.GRPCBlockHeightHeader); len(heights) > 0 {
-		height, err := strconv.ParseInt(heights[0], 10, 64)
+		height, err = strconv.ParseInt(heights[0], 10, 64)
 		if err != nil {
 			return err
 		}
@@ -71,9 +71,8 @@ func (r RPCClient) Invoke(ctx context.Context, method string, req, reply interfa
 	}
 
 	abciReq := abci.QueryRequest{
-		Path:   method,
-		Data:   reqBz,
-		Height: height,
+		Path: method,
+		Data: reqBz,
 	}
 
 	abciOpts := rpcclient.ABCIQueryOptions{

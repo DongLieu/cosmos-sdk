@@ -823,7 +823,8 @@ func (l *EventListener) Subscribe(query string, cb EventConsumer) func() {
 	eventsChan, err := l.client.WSEvents.Subscribe(ctx, "testing", query)
 	require.NoError(l.t, err)
 	cleanup := func() {
-		ctx, _ := context.WithTimeout(ctx, DefaultWaitTime)     //nolint:govet // used in cleanup only
+		ctx, cancel := context.WithTimeout(ctx, DefaultWaitTime) //nolint:govet // used in cleanup only
+		defer cancel()
 		go l.client.WSEvents.Unsubscribe(ctx, "testing", query) //nolint:errcheck // used by tests only
 		done()
 	}
