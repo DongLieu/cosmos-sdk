@@ -5,8 +5,7 @@ import (
 
 	"github.com/cosmos/gogoproto/types"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/protobuf/types/known/emptypb"
-	"google.golang.org/protobuf/types/known/wrapperspb"
+	// "google.golang.org/protobuf/types/known/emptypb"
 
 	"cosmossdk.io/x/accounts/accountstd"
 	"cosmossdk.io/x/accounts/internal/implementation"
@@ -19,32 +18,28 @@ func TestQueryServer(t *testing.T) {
 	ms := NewMsgServer(k)
 	qs := NewQueryServer(k)
 
-	// create account
-	initMsg, err := implementation.PackAny(&emptypb.Empty{})
-	require.NoError(t, err)
-
 	initResp, err := ms.Init(ctx, &v1.MsgInit{
 		Sender:      "sender",
 		AccountType: "test",
-		Message:     initMsg,
+		JsonMessage: `{}`,
 	})
 	require.NoError(t, err)
 
 	t.Run("account query", func(t *testing.T) {
-		// query
-		req := &wrapperspb.UInt64Value{Value: 10}
-		anypbReq, err := implementation.PackAny(req)
-		require.NoError(t, err)
-
 		queryResp, err := qs.AccountQuery(ctx, &v1.AccountQueryRequest{
-			Target:  initResp.AccountAddress,
-			Request: anypbReq,
+			Target:              initResp.AccountAddress,
+			QueryRequestTypeUrl: "google.protobuf.UInt64Value",
+			JsonMessage:         `10`,
 		})
 		require.NoError(t, err)
 
 		resp, err := implementation.UnpackAnyRaw(queryResp.Response)
 		require.NoError(t, err)
-		require.Equal(t, "10", resp.(*types.StringValue).Value)
+		require.NotNil(t, resp)
+
+		stringResp, ok := resp.(*types.StringValue)
+		require.True(t, ok, "expected *types.StringValue, got %T", resp)
+		require.Equal(t, "10", stringResp.Value)
 	})
 
 	t.Run("account number", func(t *testing.T) {

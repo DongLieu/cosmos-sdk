@@ -34,7 +34,7 @@ func (q *queryServer) AccountQuery(ctx context.Context, request *v1.AccountQuery
 	}
 
 	// decode req into boxed concrete type
-	queryReq, err := implementation.UnpackAnyRaw(request.Request)
+	queryReq, err := implementation.EncodeMsgJSONToProto(request.QueryRequestTypeUrl, request.JsonMessage)
 	if err != nil {
 		return nil, err
 	}
