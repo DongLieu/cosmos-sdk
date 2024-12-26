@@ -1143,13 +1143,13 @@ Julien Robert (912):
       docs: small readme tweaks (#12979)
       docs: remove unreleased tendermint upgrades from changelog (#12980)
       feat: add `FormatTime` and `ParseTimeString` methods (#12995)
-      fix: `TestIntegrationTestSuite/TestQueryBySig` flakyness (#12990)
+      fix: `TestIntegrationTestSuite/TestQueryBySig` flakiness (#12990)
       docs: improve UPGRADING.md instructions for v0.46.0 (#12646)
       fix: use module permission from app_config in `app.go` (#12997)
       fix: missing return statement in BaseApp.Query (#13046)
       build: add `go.work` in gitignore (#13100)
       docs: update contributing (#13137)
-      ci: add `csplit` for documetation building (#13154)
+      ci: add `csplit` for documentation building (#13154)
       ci: use ghcr.io cosmos website-deployment image (#13156)
       ci: fix deploying action (#13157)
       docs: add module documentation testing (#12762)
@@ -1449,7 +1449,7 @@ Julien Robert (912):
       chore: prepare math 1.0.1 (#16153)
       chore(rosetta): run `make rosetta-data` (#16169)
       docs: retract adr-47 (#16189)
-      chore(hubl): remove unecessary replace breaking `go install` (#16232)
+      chore(hubl): remove unnecessary replace breaking `go install` (#16232)
       ci: revert #16104 (#16233)
       feat(gov,group): improve metadata checks and add docs (#16235)
       chore: make params module optional in app wiring (#16269)
@@ -1479,7 +1479,7 @@ Julien Robert (912):
       ci: add cometbft version fetch in release branches by dependabot (#16551)
       fix(hubl): revert f235aae (#16534)
       chore(cosmovisor): remove cosmovisor error package (#16574)
-      docs: add explaination on how to change home folder globaly (#16620)
+      docs: add explanation on how to change home folder globally (#16620)
       chore: make `configurator.Config` public (#16624)
       feat(evidence): autocli query support (#16625)
       feat(consensus): wire autocli query (#16633)
@@ -1522,7 +1522,7 @@ Julien Robert (912):
       feat(authz): autocli query support (#16986)
       feat(client/v2): support consensus address decoding (#16927)
       feat(gov): autocli query support (#16987)
-      chore: replace amino `cosmos_dec_bytes` annoation by scalar `cosmos.Dec` and add missing annotations (#17000)
+      chore: replace amino `cosmos_dec_bytes` annotation by scalar `cosmos.Dec` and add missing annotations (#17000)
       feat(params): autocli query support (#17007)
       feat(group): autocli query support (#17006)
       chore: prepare cosmovisor v1.5.0 (#16955)
@@ -1554,7 +1554,7 @@ Julien Robert (912):
       chore(baseapp): audit (#17325)
       refactor(types)!: remove handler and update docs (#17358)
       fix(ci): install `gomod2nix` directly (#17365)
-      refactor: remove `collections.ErrInvalidIterator` when unecessary (#17364)
+      refactor: remove `collections.ErrInvalidIterator` when unnecessary (#17364)
       fix(types): check mm endblocker assertion for core api and abci (#17371)
       feat(client,simapp): inject keyring in autocli opts (#17351)
       fix(client/v2): fix duplicate modules addition and add logger (#17390)
@@ -1573,14 +1573,14 @@ Julien Robert (912):
       test(baseapp): use no-op logger (#17528)
       fix(log): custom marshaller produce invalid data (#17532)
       chore: bump golangci-lint to v1.54.2 (#17538)
-      feat(client): allow overwritting client.toml (#17513)
+      feat(client): allow overwriting client.toml (#17513)
       docs(cosmovisor): improve disclaimer for cosmovisor version (#17574)
       chore: improve issue template (#17594)
       docs: add genesis changes in upgrading.md (#17596)
       docs: update mm docs (#17595)
       chore: add v0.46.15 and v0.47.5 changelogs to main (#17479)
       chore(confix): update v0.47 and v0.50 config (#17652)
-      chore: remove unecessary method (#17680)
+      chore: remove unnecessary method (#17680)
       feat(x/tx): add indent option to encoder (#17600)
       docs: move 00-protobuf to correct folder (#17708)
       feat(x/tx): add custom type encoder (#17681)
@@ -1609,7 +1609,7 @@ Julien Robert (912):
       feat(x/slashing): add autocli options for tx (#17967)
       test(client/v2): update golden file (#18048)
       feat(x/distribution): add autocli options for tx (#17963)
-      refactor(cli): use clientCtx adress codecs in cli (#18070)
+      refactor(cli): use clientCtx address codecs in cli (#18070)
       refactor(x/authz): add exec as autocli cmd (#18039)
       feat(x/gov): add autocli options for tx (#18036)
       feat(auth,vesting): add autocli options for tx (#18100)
@@ -1711,7 +1711,7 @@ Julien Robert (912):
       test: move slash redelegation test to integration (#19581)
       refactor(x/auth/ante): don't use simulate bool in ante handler (#19586)
       refactor: use slices std (#19598)
-      feat(x/gov): add custom fuction to calculate vote results and vp (#19592)
+      feat(x/gov): add custom function to calculate vote results and vp (#19592)
       feat(runtime): message router service (#19571)
       refactor(x/authz)!: use router service (#19637)
       fix
@@ -2095,7 +2095,7 @@ Christopher Goes (868):
       Use account store key
       Fix testsuite
       Fix testcase
-      Reenable random testcase iterations
+      Re-enable random testcase iterations
       Remove unnecessary code
       Context-accessible logger field
       Add MemLogger
@@ -2300,7 +2300,7 @@ Christopher Goes (868):
       Merge PR #1538: CLI tests no longer reset local environment state
       Gopkg.lock & 'make format'
       Merge PR #1564: Add Gopkg.lock; 'make format'
-      Merge PR #1569: gaiacli, keys: Improve error message when deleting non-existant key
+      Merge PR #1569: gaiacli, keys: Improve error message when deleting non-existent key
       Merge PR #1563: Sort all msg.GetSignBytes
       Merge PR #1570: stake/client: Fix panic on  if validator doesn't exist
       Merge PR #1568: cli: deprecate --name in favor of --from
@@ -3702,9 +3702,9 @@ Marko (638):
       docs: add docs on param module deprecation (#12611)
       Revert "update-ci-only" (#12882)
       feat: display attempts left in keyring passphrase prompt  (#12924)
-      chore: add short tempalte for epics (#13072)
+      chore: add short template for epics (#13072)
       docs: ADR-60 Prepare & Process Proposal  (#12838)
-      add short exerpt on adding custom signmodes (#13104)
+      add short excerpt on adding custom signmodes (#13104)
       chore: remove query router (#13142)
       chore: bump tendermint version (#13148)
       chore: remove custom marshaling of proposal status (#13160)
@@ -4140,7 +4140,7 @@ Marko (638):
       refactor(x/slashing): remove extra get (#22376)
       docs(adr75): server v2 (#21069)
       fix(server/v2/api/telemetry): enable global metrics  (#22571)
-      fix: match comets bls implmentation (#22613)
+      fix: match comets bls implementation (#22613)
       chore: move generic txdecoder  (#22653)
       fix(crypto):  bls compilation (#22717)
       refactor(store/v2)!: simplify storage  (#22683)
@@ -4206,7 +4206,7 @@ rigelrozanski (634):
       wip genesis parsing
       working
       working
-      genesis exisiting tests pass
+      genesis existing tests pass
       working genesis tests
       ...
       initgen tests complete
@@ -4292,7 +4292,7 @@ rigelrozanski (634):
       keeper tests/revisions
       expose some keeper functions, tick cleanup
       major keeper revisions
-      borken validator keeper tests
+      broken validator keeper tests
       remove term voting power from candidates
       rebase fixes
       validatebasic tests cleanup
@@ -4315,7 +4315,7 @@ rigelrozanski (634):
       comment out handler_test.go
       move rounding into nextInflation
       visual cleanup
-      remove pool_test dep on other test declations
+      remove pool_test dep on other test declarations
       fix in candidateAddTokens
       adrian pr comment
       random test overhaul
@@ -4346,7 +4346,7 @@ rigelrozanski (634):
       started gaia go-bash cli testing
       cli testing
       go-bash working
-      interim borken
+      interim broken
       fixed cli tests
       ci build -> install
       fix PK encodings
@@ -4399,10 +4399,10 @@ rigelrozanski (634):
       lint fix, add make test_lint
       refactor export function, working
       refactor
-      export refactor, lcd tests borken
+      export refactor, lcd tests broken
       rational embedes bigRat
       changelog
-      reenable TestPossibleOverflow
+      re-enable TestPossibleOverflow
       rational cleanup
       staking cli UnmarshalBinary -> UnmarshalJSON
       re-enable race check for cli test
@@ -4879,7 +4879,7 @@ Ethan Frey (622):
       Added counter tests as well
       Merge pull request #111 from tendermint/apptxReorg
       Update CHANGELOG for some of the 0.6 enhancements
-      Cache shunit2 in Makefile, so we don't wget everytime
+      Cache shunit2 in Makefile, so we don't wget every time
       Create new command, countercli, removed counter from basecli
       Fix cli tests for new countercli app
       clean up cli tests
@@ -4900,7 +4900,7 @@ Ethan Frey (622):
       Update changelog notes for relay update
       Better error output when setup fails
       "make fresh" when things are getting stale
-      Supress ugly kill message with disown - bash magick
+      Suppress ugly kill message with disown - bash magick
       Ran through the docs, more cleanup, everything except ibc ready
       Rewrote ibc guide for basecli and relay
       Merge pull request #120 from tendermint/docs
@@ -5052,7 +5052,7 @@ Ethan Frey (622):
       Cleanup counter tx check, add replay protection to cli tests
       Cli now returns errors on non-zero code from DeliverTx
       Failing test to demo seqkey generation issue
-      A failing cli test demonstating the missing query nonce command
+      A failing cli test demonstrating the missing query nonce command
       Merge pull request #168 from tendermint/feature/160-newseq
       Ensure valid address in basecoin init
       Document standard modules
@@ -5106,7 +5106,7 @@ Ethan Frey (622):
       Add --no-sign flag
       Prepare stack middleware to handle IBC middleware
       Started on ibc module tx, types
-      Add queue implementaiton to state
+      Add queue implementation to state
       Add span to hold sparse, ordered sets
       Add a light-client provider in the kvstore
       Add set struct to the store
@@ -5134,7 +5134,7 @@ Ethan Frey (622):
       Tested register and update ibc via cli
       Test query ibc status and fix bugs
       Test sendtx with foreign addr creates proper ibc packet
-      Remvoed old ibc code
+      Removed old ibc code
       Add issuer position to grant credit
       Add CreditTx and tests
       Expose credit tx to cli and test
@@ -5163,7 +5163,7 @@ Ethan Frey (622):
       Merge pull request #199 from tendermint/rm-gobasics
       Merge pull request #197 from orijtech/baseserver-repackaging
       Cleanup some todos
-      Add test to enforce deteministic application of cache order
+      Add test to enforce deterministic application of cache order
       Ensure deterministic ordering of keys when applying KVCache
       Merge pull request #206 from tendermint/feature/fixup-store
       Merge pull request #207 from orijtech/handlers-allow-main-to-choose-which-handlers-to-use
@@ -5173,7 +5173,7 @@ Ethan Frey (622):
       Rename SetOption to InitState
       Add InitValidate method for setup
       Returns all validator changes from DeliverTx in EndBlock
-      Reenable multiplexer
+      Re-enable multiplexer
       Deduplicate validator changes in EndBlock and test this
       Handlers and middlewares add gas prices
       Add module tests for checktx return values
@@ -5323,7 +5323,7 @@ Ethan Frey (622):
       Added CommitterLoader for IAVLStore
       IAVLStore implements KVStore
       Implement IterKVStore/Iterator with TODO
-      Try to update deps, but borken
+      Try to update deps, but broken
       If CacheWrap() must support Write() enforce that with interface
       Expose NewContext, so I can initialize accounts
       Add GetStoreByName to MultiStore to help with Query lookups
@@ -5354,7 +5354,7 @@ Ethan Frey (622):
       Pulled most of gaiad into server, with rough implementation
       Extracted initialization logic into server, default option generation in gaia
       Update dependencies to import tendermint
-      Add cli to basecoind, fix compatability issues
+      Add cli to basecoind, fix compatibility issues
       Copy init code from tendermint so it runs properly
       Fix up server app_options initialization
       Update tendermint, can parse genesis in start
@@ -6124,7 +6124,7 @@ Alexander Bezobchuk (454):
       Merge PR #5268: fix IncrementSequenceDecorator gas estimate
       Merge PR #5271: add v0.37.4 section
       Merge PR #5279: Fix IAVL Iterator Race Condition
-      Revert "Mege PR #5092: changed bench32prefixes" (#5283)
+      Revert "Merge PR #5092: changed bench32prefixes" (#5283)
       Merge PR #5280: Custom JSON Marshal/Unmarshal for Account Types
       Merge PR #5240: x/evidence module implementation
       Merge PR #5294: Upgrade Module Spec
@@ -6213,7 +6213,7 @@ Alexander Bezobchuk (454):
       Merge branch 'master' into alessio/fix-unicode-unintelligible-chars
       Merge PR #5792: fix error's raw log messages ugly encoding
       Merge branch 'master' into jonathan/5783-standarize-representation-governance
-      Merge PR #5790: Standarize the representation of Governance param changes on cli requests.
+      Merge PR #5790: Standardize the representation of Governance param changes on cli requests.
       Merge pull request #5801 from cosmos/dependabot/go_modules/github.com/golang/protobuf-1.3.5
       Merge pull request #5804 from cosmos/dependabot/go_modules/github.com/tendermint/iavl-0.13.1
       Merge pull request #5807 from cosmos/dependabot/go_modules/github.com/golang/mock-1.4.2
@@ -6605,7 +6605,7 @@ Aleksandr Bezobchuk (332):
       chore: UX Mempool Tweaks (#15121)
       refactor: cleanup server logic (#15041)
       refactor: Refactor TxSearch (#14758)
-      feat: Create ABCI++ Verfication Methods (#15298)
+      feat: Create ABCI++ Verification Methods (#15298)
       refactor: Use Custom Priority in Priority Nonce Mempool (#15328)
       docs: ADR-065 Store V2 (#15028)
       docs: update mempool Select godoc (#15486)
@@ -7185,7 +7185,7 @@ Jae Kwon (276):
       enforcing @jaekwon mergemaster
       Bez/tm0.26 update pt 2 redux (#2684)
       Fix merge conflict bug; Update PENDING
-      Fix simulation bugs; Incorprates #2676 from Sunny (#2677)
+      Fix simulation bugs; Incorporates #2676 from Sunny (#2677)
       Revert "enforcing @jaekwon mergemaster"
       Add general merkle absence proof (also for empty substores) (#2685)
       Fix coins.IsLT() impl (#2686)
@@ -7248,7 +7248,7 @@ Federico Kunze (270):
       Merge PR #2066: Rename LCD endpoints (Docs)
       Merge PR #2099: Query staking Pool and Params
       Parsed Error msgs and added tests
-      Delete unnecesary line
+      Delete unnecessary line
       Update PENDING.md
       Merge branch 'develop' of https://github.com/cosmos/cosmos-sdk into fedekunze/2044-JSON-err-msgs
       Addressed Chris and Dev's comments
@@ -7627,7 +7627,7 @@ Sunny Aggarwal (226):
       R4R:  Tombstone Implementation (#3225)
       Merge PR #3103: Tombstone specification
       Add length caps for governance proposal titles and descriptions (#3434)
-      Merge PR #3428: SendMsg and MultiSendMsg seperation
+      Merge PR #3428: SendMsg and MultiSendMsg separation
       Merge PR #3496: Gov validator power sdk.Int
       Merge PR #3546: Min Self Delegation
       Merge PR #2601: Bech32 Empty Addresses
@@ -7951,7 +7951,7 @@ Robert Zaremba (186):
       Merge PR #7251: Cleanup of evidence types
       FromABCIEvidence function parameter rename (#7269)
       Makefile: use go install in the build target (#7248)
-      Added glossary explaning Denomination Key (#7330)
+      Added glossary explaining Denomination Key (#7330)
       Robert/move amino stdtx (#7301)
       Makefile: drop gofmt in favor of golangci-lint (#7260)
       adr-27: adding (#7232)
@@ -7998,7 +7998,7 @@ Robert Zaremba (186):
       rework unsafe string -> bytes conversion #8674 (#8684)
       scripts: indent multiline commands (#8706)
       Makefile: fix build_tags update (#8725)
-      internal: create package for unsafe bytes convertion (#8733)
+      internal: create package for unsafe bytes conversion (#8733)
       Robert/addr memory leak (#8717)
       Lock mutex on getting element from cache (#8767)
       crypto: add secp256r1 (#8559)
@@ -8075,7 +8075,7 @@ Robert Zaremba (186):
       fix: middleware consumeTxSizeGas linting (#10476)
       chore: golangci-linter github action setup (#10475)
       fix: bank proto exponent doc (#10526)
-      fix(cosmovisor): udpate the help and version command output (#10458)
+      fix(cosmovisor): update the help and version command output (#10458)
       doc: Update cosmosvisor README (#10584)
       docs: adr-43 update and nft proto comments (#10615)
       chore: cleanup go mod and regenerate proto files (#10645)
@@ -8092,7 +8092,7 @@ Robert Zaremba (186):
       docs: update cosmovisor README (#11136)
       docs: proto generation scripts (#11133)
       fix(cosmovisor): fix version when 'go install ...cosmovisor' (#10460)
-      cosmovisor v1.1 udpates (#11160)
+      cosmovisor v1.1 updates (#11160)
       chore: add cosmovisor v1.1 release notes (#11162)
       fix: gov 0.46 migration (#11206)
       docs: improve RegisterMigration docs (#11225)
@@ -8104,7 +8104,7 @@ Robert Zaremba (186):
       fix: dockerfile for building proto (#11452) (#11703)
       chore: trigger new tendermintdev/sdk-proto-gen tag (#11743)
       feat: add Coins.Find method (#11959)
-      chore: improve go module chache (#12057)
+      chore: improve go module cache (#12057)
       feat: add query telemetry (#12405)
       fix(telemetry): start telemetry independently from the API server (#12448)
       chore: update gov router note (#12508)
@@ -8117,7 +8117,7 @@ Robert Zaremba (186):
       chore: replace deprecated dgrijalva/jwt-go dep (#13093)
       Update UPGRADING.md (#13428)
       feat(gov): support v1.Proposal in v1beta1.Proposal.Content (#14347)
-      feat: gov/v1.Proposal convertion to v1beta1.Proposal cleanup (#14401)
+      feat: gov/v1.Proposal conversion to v1beta1.Proposal cleanup (#14401)
       fix: keyring-backend flag usage (#14509)
       docs(proto): specify time type in vesting proto (#14513)
       chore: simplify ADR-028 and address.Module (#14017)
@@ -8291,7 +8291,7 @@ Facundo Medica (183):
       refactor(x/protocolpool)!: Reducing complexity and removing some bugs (#20786)
       refactor(x/distribution)!: remove PreviousProposer and return early if there are no fees to distribute (#20735)
       refactor(accounts): move multisig into its own go.mod (#20928)
-      ci: set up x/acounts/multisig (#20934)
+      ci: set up x/accounts/multisig (#20934)
       fix(x/staking): Add missing data from import/export (#20953)
       chore(all)!: use gogoproto/any instead of codec/types/any (#21013)
       fix(x/slashing): do not error when val has zero tokens (#20977)
@@ -8308,7 +8308,7 @@ Facundo Medica (183):
       fix: reimplement sig verification for app v2 (#21386)
       fix!: Add ValidateTx to ExtensionOptionChecker ante (#21403)
       refactor(x/circuit): add TxValidator (#21441)
-      fix(baseapp): preblock events are not emmitted correctly (#21444)
+      fix(baseapp): preblock events are not emitted correctly (#21444)
       fix(unorderedtx): issues reported in audit (#21467)
       feat(client/v2): improve error message on enums (#21936)
       chore(x/authz)!: Remove account keeper dependency (#21632)
@@ -8730,7 +8730,7 @@ Jack Zampolin (172):
       Update IAVL to 0.12.0 (#2951)
       R4R: Update single node network bootstrapping documentation (#2931)
       Address gov cli ux issues and add additional input validation for better errors (#2938)
-      R4R: Additional gentx verfication (#2971)
+      R4R: Additional gentx verification (#2971)
       Merge PR #2987: Add shorthand flag to address output on gaiacli keys show and update docs
       Add Account Decoder to the LCD (#3013)
       Merge PR #3014: Update to 0.27 final of Tendermint
@@ -8770,7 +8770,7 @@ Jack Zampolin (172):
       Fix pending (#3348)
       Merge PR #3346: Change name of gaiacli query distr to dist
       Merge PR #3338: Remove unused code and examples
-      Merge PR #3352: Reenable simulation tests
+      Merge PR #3352: Re-enable simulation tests
       Fix curlies in the docs
       Fix comma
       Merge PR #3385: Docs Hotfix
@@ -8787,7 +8787,7 @@ Jack Zampolin (172):
       Merge PR #3503: CLI flags to args
       Merge PR #3530: delete accidentally committed file
       Merge PR #3550: Speed up CLI tests
-      Merge PR #3519: Update dependancies
+      Merge PR #3519: Update dependencies
       Merge PR #3554: x/auth and x/bank review results
       Merge PR #3563: Upgrade Tendermint version to 0.30.0-rc0
       Merge branch 'master' into release/v0.31.1
@@ -8902,7 +8902,7 @@ atheeshp (161):
       docs: add jq doc for editing genesis file (#9918)
       feat: add sign mode direct aux handler (#9944)
       feat: increase gas cost for submit proposal (#9995)
-      refactor: migrate ante hanlders to middlewares (#10028)
+      refactor: migrate ante handlers to middlewares (#10028)
       feat: Add `SIGN_MODE_AMINO_AUX` handler (#10268)
       docs: add ibc migration docs in migration docs (#10438)
       refactor: middleware refactor to change tx.Handler interface (#10527)
@@ -9762,7 +9762,7 @@ colin axnér (117):
       update err to match others (#7857)
       Update IBC host keys + cleanup (#7873)
       fix mismatched solomachine signature data type verification (#7882)
-      solo machine GetPubKey returns an error instead of panicing (#7883)
+      solo machine GetPubKey returns an error instead of panicking (#7883)
       IBC Fraction for trust level changed to uints (#7892)
       IBC Upgrades function interface return client/consensus (#7895)
       Remove consensus params from IBC tm client (#7891)
@@ -9831,7 +9831,7 @@ ValarDragon (104):
       Set home-client in gaiad init
       Remove --owk flag
       cli: deprecate --name in favor of --from
-      gaiacli, keys: Improve error message when deleting non-existant key
+      gaiacli, keys: Improve error message when deleting non-existent key
       stake/client: Fix panic on  if validator doesn't exist
       cli: Add async flag to all broadcasting txs
       add Async to context
@@ -9911,13 +9911,13 @@ ValarDragon (104):
       move typedef
       simulation: Make validator choice use validator set
       Update changelog
-      Make the simulator create the new comission rate sensibly
+      Make the simulator create the new commission rate sensibly
       update ubuntu install script
       Merge branch 'develop' of github.com:cosmos/cosmos-sdk into develop
       change branch to master
       Add epoched staking ADR
       Merge branch 'adr-epoched-staking' of github.com:sikkatech/cosmos-sdk into adr-epoched-staking
-      Repsond to comments, improve descriptions
+      Respond to comments, improve descriptions
       Missed a comment
       Add section for parameterizing the epoch length
       Fix accidentally committed files
@@ -10148,7 +10148,7 @@ HaoyangLiu (78):
       Merge PR #2370: Improve error handler in certifier creation
       Merge with develop
       Remove changes in keys
-      Remove uesless code
+      Remove useless code
       Now only add API doc for version
       Add comment for broadcast type
       Rename swaggerui to swagger-ui
@@ -10178,7 +10178,7 @@ HaoyangLiu (78):
       Add swagger-ui for key management
       Fix test_lint failure and test_cover failure
       Refactor keys handler according to code reviewers
-      create adequate error for key managerment
+      create adequate error for key management
       Merge branch 'develop' of https://github.com/cosmos/cosmos-sdk into bianjie/lcd-lite-swagger-ui
       Merge PR #2462: Add swagger-ui for gov, stake and slashing
       Merge PR #3387: Add missing iterator close
@@ -10617,7 +10617,7 @@ yihuang (68):
       feat: add Close method for resource cleanup in graceful shutdown (#16193)
       feat: make StartCmd more customizable (#16209)
       feat: save restored snapshot locally (#16060)
-      fix: snapshotter's failure is not propogated (#16588)
+      fix: snapshotter's failure is not propagated (#16588)
       refactor: cleanup profiling code with equivalent one (#16634)
       feat: make abci handshake graceful interruptible (#16206)
       fix: halt-height behavior is not deterministic (#16639)
@@ -10692,7 +10692,7 @@ MD Aleem (61):
       fix: remove time.now check from authz (#11129)
       feat(authz)!: pruning expired authorizations (#10714)
       chore: rename migrations v045 -> v046 (#11210)
-      fix(cli): `submit-legacy-proposal`: return propoer error if no flag is provided (#11287)
+      fix(cli): `submit-legacy-proposal`: return proper error if no flag is provided (#11287)
       fix: x/authz allow insufficient funds error (#11252)
       feat: Add `MsgLeaveGroup` to group module (#10887)
       refactor(tests): refactor group CLI tests to be independent (#11338)
@@ -10887,7 +10887,7 @@ cool-developer (53):
       feat(store/v2): add SetInitialVersion in SC (#18665)
       feat: Remove the `store/internal` module (#18944)
       feat(store/v2): Implement the `GetProof` for multi store (#18736)
-      feat(store/v2): remove cosmos-db depdency from store (#19229)
+      feat(store/v2): remove cosmos-db dependency from store (#19229)
       feat(store/v2): Implement State Migration (#19327)
       feat(store/v2): remove the pruning manager (#19411)
       chore: fix the flaky test in store/snapshots (#19774)
@@ -11004,7 +11004,7 @@ SaReN (52):
       Migrate remaining x/auth tx tests to proto (#6898)
       Remove old tx code from rest (#6939)
       Remove TxBuilder and usages (#6941)
-      Fix clientCtx intialization (#6955)
+      Fix clientCtx initialization (#6955)
       Fix x/bank genesis non-determinism (#6940)
       Add cli test for query Account (#6973)
       Fix add-genesis-account in simd (#7069)
@@ -11577,7 +11577,7 @@ gamarin (38):
       better display
       Sunnys feedback
       Split procedures and add grace period
-      additional chekc in VoteMsg
+      additional check in VoteMsg
       latest change
       Spec conforms to current module
       update val faq
@@ -11943,11 +11943,11 @@ David Kajpust (30):
       Merge branch 'develop' of https://github.com/cosmos/cosmos-sdk into develop
       Merge branch 'develop' of https://github.com/cosmos/cosmos-sdk into develop
       instructions to launch basecoin and do account tx's
-      deleted a test file that isnt needed
+      deleted a test file that isn't needed
       markdown formatting fixes
       markdown formatting fixes
       Merge branch 'develop' of https://github.com/cosmos/cosmos-sdk into develop
-      added updated explaination from old docs
+      added updated explanation from old docs
       fixing display
       more display updates
       more display updates
@@ -12156,7 +12156,7 @@ Joon (27):
 Zaki Manian (26):
       Switch dependency resolution to dep and update Makefile to use dep
       Replace glide with dep
-      Through careful use of the [overide] directive this now builds
+      Through careful use of the [override] directive this now builds
       Almost from scratch reimplementation of bech32cosmos integration.
       Use public keys consistently for validators and all addresses are for accounts
       Use the account encoding for the validator address
@@ -12245,7 +12245,7 @@ Jeremiah Andrews (25):
       changed to new cli commands in docs
       additional changes
       changelog
-      base variabls / logic, need tests
+      base variables / logic, need tests
       testing pruning
       addressing comments
       setting default to archive mode / no pruning
@@ -13071,15 +13071,15 @@ Xuefeng Zhu (8):
       Merge PR #5051: Remove staking tkey
       Merge PR #5157: Remove pubkey from slashing infraction log
       Merge PR #5160: Simply Dec and Int sign check
-      Merge PR #5503: use build-in iterator function
+      Merge PR #5503: use built-in iterator function
       Get Uin64 directly instead of Int64 (#5672)
       remove duplicated check when RemoveValidator (#6239)
 
 auricom (8):
       ci: remove nix from gh workflows (#21572)
       ci: rocksdb version in makefile (#21654)
-      ci: centralized job for rocksdb libaries cache (#21657)
-      ci: reduce rocksdb-cache execiton frequence (#22193)
+      ci: centralized job for rocksdb libraries cache (#21657)
+      ci: reduce rocksdb-cache execiton frequency (#22193)
       build(deps): Bump actions/xxx-artifact from v3 to v4 (#22468)
       ci: fix permissions for GITHUB_TOKEN in spell check workflow (#22545)
       ci: fix permissions for GITHUB_TOKEN on dependabot workflows (#22547)
@@ -13200,7 +13200,7 @@ lilasxie (7):
       chore: using pre-defined flag variables (#21794)
       chore(store/internal): use std maps (#21792)
       chore(collections): fix import lint error by `make lint-fix` (#21875)
-      docs: correct `Continous` spelling to `Continuous` (#22880)
+      docs: correct `Continuous` spelling to `Continuous` (#22880)
 
 tutufen (7):
       docs(keys): remove unsupported `--dry-run` flag description for `keys migrate` (#22057)
@@ -13336,8 +13336,8 @@ yukionfire (6):
       chore(x/auth,x/accounts): use `errors.New` to replace `fmt.Errorf` with no parameters (#20993)
       chore(x/staking,x/upgrade): replace `fmt.Errorf` without parameters with `errors.New` (#21004)
       chore(x): replace `fmt.Errorf` without parameters with `errors.New` (#21032)
-      chore(all): replace all `fmt.Errorf` without paramters with `errors.New` (#21068)
-      chore(all): replace all `fmt.Errorf` without paramters with `errors.New` (#21590)
+      chore(all): replace all `fmt.Errorf` without parameters with `errors.New` (#21068)
+      chore(all): replace all `fmt.Errorf` without parameters with `errors.New` (#21590)
 
 yys (6):
       Merge PR #4716: Fix ledger custom coin type support bug
@@ -13369,7 +13369,7 @@ Hanjun Kim (5):
       feat: (x/bank) add `SpendableCoin` method to `BaseViewKeeper` (#12593)
 
 Leo Pang (5):
-      cosmovisor: move binrary to UpgradeBin from directory (fix #8494) (#8497)
+      cosmovisor: move binary to UpgradeBin from directory (fix #8494) (#8497)
       cosmovisor: set larger buffer size for cosmovisor to scan log (fix #8651) (#8653)
       ci: setup cosmovisor goreleaser workflow (#10110)
       CI: stick to v0.179.0 for cosmovisor goreleaser (#11138)
@@ -13481,7 +13481,7 @@ shirleypyj (5):
       Merge PR #4567: Update README.md
 
 yaruwangway (5):
-      refactor: import dependancy from upgrade module to cosmovisor module (#10442)
+      refactor: import dependency from upgrade module to cosmovisor module (#10442)
       feat: add backup path (#10649)
       add comment to guide the module order in SetOrderInitGenesis (#11146)
       docs: add module migration order guidance (#11255)
@@ -13495,7 +13495,7 @@ zakir-code (5):
       refactor: hide `--output` flags that don't work (#17188)
 
 Anmol (4):
-      feat(docker): Add debuging dependencies directly into the dockerfile (#17228)
+      feat(docker): Add debugging dependencies directly into the dockerfile (#17228)
       feat: starship e2e tests and devnet integration (#17077)
       ci: upgrade starship action to latest version, with logs and retries (#17369)
       chore: update starshp-action version (#18301)
@@ -13516,7 +13516,7 @@ Geoff Lee (4):
       fix: rosetta server boot and add burn event type to pass check:data (#10150)
       feat: enhance rosetta support (#11609)
       fix: make rosetta's gas prices for default fee suggestion optional (#11857)
-      remove unncessary comma from value of proposal_messages event (#18300)
+      remove unnecessary comma from value of proposal_messages event (#18300)
 
 Gianguido Sora (4):
       add trust to macOS Keychain for calling apps by default (#8826)
@@ -13574,7 +13574,7 @@ Miguel Dingli (4):
 
 Murali Krishna Komatireddy (4):
       docs: client docs for upgrade module  (#10320)
-      fix: remove delegator addess from MsgCreateValidator (#14567)
+      fix: remove delegator address from MsgCreateValidator (#14567)
       fix: return undelegate amount with MsgUndelegateResponse (#14590)
       feat: resolve IBC hash to human readable denom (#14894)
 
@@ -13654,7 +13654,7 @@ sleepy ramen (4):
       fix: duplicate import (#12778)
       fix: misc fixes for cosmos-rosetta (#13583)
       fix: docker-compose for rosetta-cli tests (#132) (#13946)
-      build(deps): update rosetta-go-sdk dependecies to v0.8.2 (#14154)
+      build(deps): update rosetta-go-sdk dependencies to v0.8.2 (#14154)
 
 svaishnavy (4):
       Merge branch 'develop' into svaishnavy/cosmos-sdk-cli
@@ -13685,7 +13685,7 @@ Andrea Giacobino (3):
 
 Austin Abell (3):
       Merge PR #4687: Changed replace directive to specific revision of tendermint crypto
-      Interchangable PrivKey implementations in keybase (#5278)
+      Interchangeable PrivKey implementations in keybase (#5278)
       apply options on newly added keyring types (#5404)
 
 Brenn Hill (3):
@@ -13783,7 +13783,7 @@ MSalopek (3):
       fix: pass FinalizeBlock request and response to ABCIListener (#18486)
       fix(x/consensus)!: update cons params parsing checks (#21484)
 
-Manuel Bravo (3):
+Manual Bravo (3):
       docs: store spec template/guideline (#14020)
       docs: minor fixes to spec template (#14369)
       docs: inter-block cache specification (#14370)
@@ -14022,7 +14022,7 @@ Edvin Ukko (2):
 
 Elvin (2):
       Merge PR #2643: AppendTag function usage error. append elements do not work
-      Mege PR #5092: changed bench32prefixes
+      Merge PR #5092: changed bench32prefixes
 
 Ergels Gaxhaj (2):
       docs: update ADR 038 proposal (#13473)
@@ -14057,7 +14057,7 @@ Hemanth Sai (2):
       chore: fix spelling errors (#21235)
 
 Hyung-Kyu Hqueue Choi (2):
-      Merge PR #4890: Fix broken gaia links in translated READEME.md
+      Merge PR #4890: Fix broken gaia links in translated README.md
       Remove unnecessary nil check (#4952)
 
 Ira Miller (2):
@@ -14153,7 +14153,7 @@ Oleg Kovalov (2):
       chore: fix nolint comments (#17644)
 
 Pavel (2):
-      add anotation for json/yaml marshal ibc/tendermint/header type (#6138)
+      add annotation for json/yaml marshal ibc/tendermint/header type (#6138)
       Args:    cobra.ExactArgs(1) required but never used (#6140)
 
 Philip Glazman (2):
@@ -14797,7 +14797,7 @@ PaddyMc (1):
 Parsa Akbari (1):
       docs: fix a typo (#15542)
 
-Pash (1):
+Hash (1):
       Update docs (#8751)
 
 Paul Chen (1):
@@ -15140,7 +15140,7 @@ kokeshiM0chi (1):
       fix: add patch version (#20096)
 
 l-parabellum (1):
-      Update doc for IterateAccounts x/auth keeper meethod (#9285)
+      Update doc for IterateAccounts x/auth keeper method (#9285)
 
 larry (1):
       feat: Add CLI commands: 1) simulate a transaction, 2) query block results (#16887)
