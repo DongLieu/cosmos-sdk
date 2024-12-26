@@ -13662,6 +13662,12 @@ svaishnavy (4):
       Replacing with a single backtick
       Merge PR #2614: Configurable Bech32 prefix for SDK users
 
+Đông Liều (4):
+      fix(math): fix panic on Uint.BigInt() (#18228)
+      feat(math): add mutative api for Uint.BigInt() (#18247)
+      feat(math): add mutative api for LegacyDec.BigInt() (#18421)
+      l
+
 Albert Chon (3):
       reduce gas costs by 10x for transient store operations (#8790)
       fix: broken link to IBC specs (#9715)
@@ -13922,11 +13928,6 @@ seayyyy (3):
       docs(tests/starship): fix broken link (#20123)
       docs: fix broken link (#20133)
 
-Đông Liều (3):
-      fix(math): fix panic on Uint.BigInt() (#18228)
-      feat(math): add mutative api for Uint.BigInt() (#18247)
-      feat(math): add mutative api for LegacyDec.BigInt() (#18421)
-
 Aayushi Jain (2):
       Merge PR #4625: Implement logger on all module keepers
       Merge PR #4678: Clean YAML output
@@ -14010,6 +14011,10 @@ Dan Lynch (2):
 Dong Lieu (2):
       perf: Speedup DecCoin.Sort() when coins is of length 1 (#18888)
       docs(x/gov): Sync Example with Use in autocli (#22768)
+
+DongLieu (2):
+      style(chore autocli): updates Example, Use auctocli (#23088)
+      Merge pull request #5 from DongLieu/dd/1
 
 Edvin Ukko (2):
       docs: Fix typo under learn/learn.md (#20277)
@@ -14524,9 +14529,6 @@ Diogo Teles Sant'Anna (1):
 
 Dmytrol (1):
       docs: fix typos in various documentation files (#22722)
-
-DongLieu (1):
-      style(chore autocli): updates Example, Use auctocli (#23088)
 
 Dreamer (1):
       refactor(x/nft): remove class&nft id validation (#13836)
