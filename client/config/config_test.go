@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	nodeEnv   = "NODE"
+	nodeEnv   = "CONFIG_TEST_NODE"
 	testNode1 = "http://localhost:1"
 	testNode2 = "http://localhost:2"
 )
@@ -32,7 +32,6 @@ func initClientContext(t *testing.T, envVar string) (client.Context, func()) {
 		WithCodec(codec.NewProtoCodec(codectypes.NewInterfaceRegistry())).
 		WithChainID(chainID)
 
-	require.NoError(t, clientCtx.Viper.BindEnv(nodeEnv))
 	if envVar != "" {
 		require.NoError(t, os.Setenv(nodeEnv, envVar))
 	}
@@ -41,7 +40,10 @@ func initClientContext(t *testing.T, envVar string) (client.Context, func()) {
 	require.NoError(t, err)
 	require.Equal(t, clientCtx.ChainID, chainID)
 
-	return clientCtx, func() { _ = os.RemoveAll(home) }
+	return clientCtx, func() {
+		_ = os.RemoveAll(home)
+		_ = os.Unsetenv(nodeEnv)
+	}
 }
 
 func TestConfigCmdEnvFlag(t *testing.T) {
@@ -76,7 +78,6 @@ func TestConfigCmdEnvFlag(t *testing.T) {
 			clientCtx, cleanup := initClientContext(t, tc.envVar)
 			defer func() {
 				cleanup()
-				_ = os.Unsetenv(nodeEnv)
 			}()
 			/*
 				env var is set with a flag
