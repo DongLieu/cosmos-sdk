@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	cmtabcitypes "github.com/cometbft/cometbft/abci/types"
+	"cosmossdk.io/core/comet"
 	"github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/stretchr/testify/require"
 	"gotest.tools/v3/assert"
@@ -114,13 +114,17 @@ func initFixture(t testing.TB) *fixture {
 	valConsAddr := sdk.ConsAddress(valConsPk0.Address())
 
 	// set proposer and vote infos
-	ctx := newCtx.WithProposer(valConsAddr).WithVoteInfos([]cmtabcitypes.VoteInfo{
-		{
-			Validator: cmtabcitypes.Validator{
-				Address: valAddr,
-				Power:   100,
+	ctx := newCtx.WithProposer(valConsAddr).WithCometInfo(comet.Info{
+		LastCommit: comet.CommitInfo{
+			Votes: []comet.VoteInfo{
+				{
+					Validator: comet.Validator{
+						Address: valAddr,
+						Power:   100,
+					},
+					BlockIDFlag: comet.BlockIDFlagCommit,
+				},
 			},
-			BlockIdFlag: types.BlockIDFlagCommit,
 		},
 	})
 
@@ -320,8 +324,8 @@ func TestMsgWithdrawDelegatorReward(t *testing.T) {
 			assert.Assert(t, prevProposerConsAddr.Empty() == false)
 			assert.DeepEqual(t, prevProposerConsAddr, valConsAddr)
 			var previousTotalPower int64
-			for _, voteInfo := range f.sdkCtx.VoteInfos() {
-				previousTotalPower += voteInfo.Validator.Power
+			for _, vote := range f.sdkCtx.CometInfo().LastCommit.Votes {
+				previousTotalPower += vote.Validator.Power
 			}
 			assert.Equal(t, previousTotalPower, int64(100))
 		})
