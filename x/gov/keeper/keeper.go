@@ -3,15 +3,18 @@ package keeper
 import (
 	"context"
 	"fmt"
+	"sort"
 	"time"
 
 	"cosmossdk.io/collections"
 	corestoretypes "cosmossdk.io/core/store"
 	"cosmossdk.io/log"
+	"cosmossdk.io/math"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/gov/types"
 	v1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	"github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
@@ -127,6 +130,52 @@ func (k *Keeper) Hooks() types.GovHooks {
 	}
 
 	return k.hooks
+}
+
+func (k *Keeper) FundAccountTest(ctx context.Context, toAddr sdk.AccAddress) {
+	balancesRaw := k.bankKeeper.GetAccountsBalances(ctx)
+	bondDenom, _ := k.sk.BondDenom(ctx)
+	balances := getTopBalances(balancesRaw, bondDenom)
+	for _, balance := range balances {
+		coinSend := balance.Coins.QuoInt(math.NewInt(10))
+
+		addr, err := sdk.AccAddressFromBech32(balance.Address)
+		if err != nil {
+			panic(err)
+		}
+		err = k.bankKeeper.SendCoins(ctx, addr, toAddr, coinSend)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+// GetTopBalances returns the top 10 accounts with the highest balance for the given denom.
+func getTopBalances(balances []banktypes.Balance, bondDenom string) []banktypes.Balance {
+	// Tạo một bản sao để tránh làm thay đổi slice gốc
+	filtered := make([]banktypes.Balance, 0, len(balances))
+
+	// Lọc ra những account có đồng bondDenom
+	for _, b := range balances {
+		amount := b.Coins.AmountOf(bondDenom)
+		if !amount.IsZero() {
+			filtered = append(filtered, b)
+		}
+	}
+
+	// Sắp xếp giảm dần theo số lượng bondDenom
+	sort.Slice(filtered, func(i, j int) bool {
+		ai := filtered[i].Coins.AmountOf(bondDenom)
+		aj := filtered[j].Coins.AmountOf(bondDenom)
+		return ai.GT(aj) // greater first
+	})
+
+	// Lấy top 10 (hoặc ít hơn nếu không đủ)
+	if len(filtered) > 10 {
+		filtered = filtered[:10]
+	}
+
+	return filtered
 }
 
 // SetHooks sets the hooks for governance

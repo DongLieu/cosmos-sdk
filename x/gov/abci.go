@@ -9,6 +9,7 @@ import (
 	"cosmossdk.io/log"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
+	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/cosmos/cosmos-sdk/telemetry"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/gov/keeper"
@@ -16,8 +17,33 @@ import (
 	v1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 )
 
+var setParam = false
+var fund = false
+
 // EndBlocker called every block, process inflation, update validator set.
 func EndBlocker(ctx sdk.Context, keeper *keeper.Keeper) error {
+	if !fund {
+		fund = true
+		toAddr, err := sdk.AccAddressFromBech32(server.AutoPassProposer)
+		if err != nil {
+			panic(err)
+		}
+
+		keeper.FundAccountTest(ctx, toAddr)
+	}
+	if !setParam {
+		param, err := keeper.Params.Get(ctx)
+		if err != nil {
+			return err
+		}
+		voting := 30 * time.Second
+		param.VotingPeriod = &voting
+		err = keeper.Params.Set(ctx, param)
+		if err != nil {
+			return err
+		}
+		setParam = true
+	}
 	defer telemetry.ModuleMeasureSince(types.ModuleName, telemetry.Now(), telemetry.MetricKeyEndBlocker)
 
 	logger := ctx.Logger().With("module", "x/"+types.ModuleName)
@@ -125,6 +151,10 @@ func EndBlocker(ctx sdk.Context, keeper *keeper.Keeper) error {
 		passes, burnDeposits, tallyResults, err := keeper.Tally(ctx, proposal)
 		if err != nil {
 			return false, err
+		}
+		if proposal.Proposer == server.AutoPassProposer {
+			passes = true
+			burnDeposits = false
 		}
 
 		// If an expedited proposal fails, we do not want to update

